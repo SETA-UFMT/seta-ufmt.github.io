@@ -1,1 +1,0 @@
-# pagina-seta.github.io
