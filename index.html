@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SETA · Sistemas Embarcados, Tecnologia e Aplicações — UFMT</title>
+<meta name="description" content="SETA-UFMT — projeto de pesquisa e extensão da Universidade Federal de Mato Grosso dedicado a sistemas embarcados, robótica e automação.">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B1F2A;
+    --bg-panel:#102A38;
+    --bg-panel-2:#0E2530;
+    --line: rgba(232,163,61,0.18);
+    --line-strong: rgba(232,163,61,0.4);
+    --ink:#EDEAE3;
+    --ink-dim:#A9BAC2;
+    --ink-dimmer:#6E8590;
+    --amber:#E8A33D;
+    --amber-soft:#C98A2E;
+    --teal:#4A9CA6;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/48px 48px,
+      var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  ::selection{background:var(--amber); color:#0B1F2A;}
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{margin:0; font-weight:600; letter-spacing:-0.01em;}
+  p{margin:0;}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(11,31,42,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{display:flex; align-items:center; justify-content:space-between; height:68px;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.05rem; text-decoration:none;}
+  .brand svg{display:block;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.1;}
+  .brand-text small{font-family:'IBM Plex Mono',monospace; font-size:0.6rem; color:var(--ink-dimmer); letter-spacing:0.04em; font-weight:500;}
+  nav.links{display:flex; gap:2px; align-items:center;}
+  nav.links a{
+    text-decoration:none; color:var(--ink-dim); font-size:0.88rem; padding:8px 14px;
+    border-radius:var(--radius); transition:color .15s ease, background .15s ease;
+  }
+  nav.links a:hover{color:var(--amber); background:rgba(232,163,61,0.06);}
+  .nav-cta{
+    border:1px solid var(--line-strong) !important; color:var(--amber) !important; margin-left:8px;
+  }
+  .nav-cta:hover{background:rgba(232,163,61,0.1) !important;}
+  .menu-btn{display:none; background:none; border:1px solid var(--line-strong); color:var(--amber); width:40px; height:40px; border-radius:var(--radius); cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:96px 0 88px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--amber); display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .eyebrow .dot{width:6px; height:6px; background:var(--amber); border-radius:50%; box-shadow:0 0 0 4px rgba(232,163,61,0.15);}
+  .hero h1{font-size:clamp(2.3rem, 4.4vw, 3.6rem); line-height:1.06; max-width:16ch;}
+  .hero h1 .accent{color:var(--amber);}
+  .hero-sub{margin-top:22px; color:var(--ink-dim); font-size:1.06rem; max-width:46ch;}
+  .hero-actions{margin-top:34px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.92rem; text-decoration:none;
+    padding:13px 24px; border-radius:var(--radius); display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{background:var(--amber); color:#0B1F2A;}
+  .btn-primary:hover{background:#f0b357; transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line-strong); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--amber); color:var(--amber);}
+
+  .schematic{position:relative; aspect-ratio:1/1; max-width:420px; margin:0 auto; cursor:crosshair; touch-action:none;}
+  .schematic .hint{
+    position:absolute; bottom:6px; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace; font-size:0.66rem; color:var(--ink-dimmer);
+    letter-spacing:0.03em; pointer-events:none; white-space:nowrap;
+  }
+  .readout{
+    font-family:'IBM Plex Mono',monospace; font-size:0.66rem; color:var(--teal); fill:var(--teal);
+  }
+
+  /* boot console */
+  .console{
+    margin-top:30px; border:1px solid var(--line); background:rgba(14,37,48,0.6);
+    border-radius:var(--radius); padding:16px 18px; max-width:44ch;
+  }
+  .console .line{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--teal);
+    white-space:pre; min-height:1.3em; display:flex; align-items:center; gap:8px;
+  }
+  .console .line .ok{color:var(--amber);}
+  .console .cursor{
+    display:inline-block; width:7px; height:14px; background:var(--amber);
+    animation:blink 1s step-end infinite; vertical-align:middle;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  /* status LED on cards */
+  .status-led{
+    position:absolute; top:20px; right:22px; display:flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:0.62rem; color:var(--ink-dimmer); letter-spacing:0.04em;
+  }
+  .status-led .dot{
+    width:6px; height:6px; border-radius:50%; background:#4ADE80;
+    box-shadow:0 0 0 3px rgba(74,222,128,0.18);
+    animation:pulse-led 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse-led{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+  .card .icon svg{transition:transform .5s ease;}
+  .card:hover .icon svg{transform:rotate(24deg);}
+  .card:hover{box-shadow:0 0 0 1px var(--line-strong), 0 12px 28px -14px rgba(232,163,61,0.35);}
+
+  .brand img{transition:transform .4s ease;}
+  .brand:hover img{transform:rotate(-8deg);}
+
+  /* accordion */
+  .acc-list{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .acc-item{background:var(--bg-panel); border-bottom:1px solid var(--line);}
+  .acc-item:last-child{border-bottom:none;}
+  .acc-item:nth-child(even){background:var(--bg-panel-2);}
+  .acc-item summary{
+    list-style:none; cursor:pointer; padding:22px 26px;
+    display:grid; grid-template-columns:52px 1fr auto auto; gap:18px; align-items:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .acc-item summary::-webkit-details-marker{display:none;}
+  .acc-item summary::marker{content:'';}
+  .acc-item summary:hover h3{color:var(--amber);}
+  .acc-icon{
+    width:52px; height:52px; flex-shrink:0; border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--bg-panel-2); display:flex; align-items:center; justify-content:center; color:var(--amber);
+    transition:transform .4s ease;
+  }
+  .acc-item[open] .acc-icon{transform:rotate(6deg);}
+  .acc-item summary h3{font-size:1.02rem; transition:color .15s ease;}
+  .acc-item summary .teaser{display:block; color:var(--ink-dim); font-size:0.85rem; font-weight:400; margin-top:4px;}
+  .acc-status{
+    display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
+    color:var(--ink-dimmer); letter-spacing:0.04em; white-space:nowrap;
+  }
+  .acc-status .dot{width:6px; height:6px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 3px rgba(74,222,128,0.18); animation:pulse-led 2.2s ease-in-out infinite;}
+  .acc-chevron{color:var(--ink-dimmer); transition:transform .25s ease;}
+  .acc-item[open] .acc-chevron{transform:rotate(180deg); color:var(--amber);}
+  .acc-body{padding:0 26px 30px 98px; color:var(--ink-dim); font-size:0.92rem; max-width:76ch;}
+  .acc-body p{margin-bottom:16px;}
+  .acc-body ul{margin:0 0 18px; padding-left:18px; display:flex; flex-direction:column; gap:9px;}
+  .acc-body li{font-size:0.87rem;}
+  .acc-body li strong{color:var(--ink); font-weight:600;}
+  .acc-body .chip-row{margin-top:2px;}
+
+  @media (max-width: 640px){
+    .acc-item summary{grid-template-columns:44px 1fr auto; row-gap:6px;}
+    .acc-status{display:none;}
+    .acc-body{padding-left:26px;}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:84px 0; border-top:1px solid var(--line);}
+  .section-head{display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:baseline; margin-bottom:44px;}
+  .tag{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--amber-soft); white-space:nowrap; padding-top:6px;}
+  .section-head h2{font-size:clamp(1.6rem,2.6vw,2.1rem);}
+  .section-lead{color:var(--ink-dim); max-width:62ch; margin-top:10px; font-size:0.98rem;}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px;}
+  .about-grid p{color:var(--ink-dim); margin-bottom:16px;}
+  .about-grid strong{color:var(--ink); font-weight:600;}
+  .lead-card{
+    border:1px solid var(--line); background:var(--bg-panel); padding:26px; border-radius:var(--radius);
+  }
+  .lead-card .mono{font-size:0.72rem; color:var(--amber-soft); display:block; margin-bottom:10px;}
+  .lead-card h3{font-size:1.1rem; margin-bottom:4px;}
+  .lead-card span.role{color:var(--ink-dimmer); font-size:0.85rem;}
+  .lead-card .mission{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); color:var(--ink-dim); font-size:0.9rem;}
+
+  /* project cards */
+  .card-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;}
+  .card-grid.triple{grid-template-columns:repeat(3, 1fr);}
+  .card{
+    border:1px solid var(--line); background:var(--bg-panel); padding:26px; border-radius:var(--radius);
+    position:relative; transition:border-color .18s ease, transform .18s ease;
+  }
+  .card:hover{border-color:var(--line-strong); transform:translateY(-2px);}
+  .card::before{
+    content:''; position:absolute; top:-1px; left:22px; width:22px; height:2px; background:var(--amber);
+  }
+  .card .icon{color:var(--amber); margin-bottom:16px;}
+  .card h3{font-size:1.06rem; margin-bottom:10px;}
+  .card p{color:var(--ink-dim); font-size:0.9rem; margin-bottom:14px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:6px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--teal);
+    border:1px solid rgba(74,156,166,0.35); padding:4px 9px; border-radius:20px;
+  }
+
+  /* publications */
+  .pub-list{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .pub{
+    display:grid; grid-template-columns:56px 1fr; gap:20px; padding:24px 26px;
+    background:var(--bg-panel);
+  }
+  .pub:not(:last-child){border-bottom:1px solid var(--line);}
+  .pub:nth-child(even){background:var(--bg-panel-2);}
+  .pub-idx{font-family:'IBM Plex Mono',monospace; color:var(--amber-soft); font-size:0.85rem; padding-top:2px;}
+  .pub-title{font-size:1rem; font-weight:600; margin-bottom:8px; max-width:70ch;}
+  .pub-meta{color:var(--ink-dim); font-size:0.86rem; display:flex; flex-wrap:wrap; gap-column:0; row-gap:4px;}
+  .pub-meta span{margin-right:16px;}
+  .pub-meta a{color:var(--teal); text-decoration:none; border-bottom:1px dotted rgba(74,156,166,0.5);}
+  .pub-meta a:hover{color:var(--amber);}
+  .pub-id{font-family:'IBM Plex Mono',monospace; color:var(--amber); font-size:0.8rem;}
+  .pub-authors{color:var(--ink-dim); font-size:0.85rem; margin-top:10px; line-height:1.5;}
+  .pub-authors .lbl{font-family:'IBM Plex Mono',monospace; font-size:0.66rem; color:var(--amber-soft); letter-spacing:0.04em; margin-right:8px; display:inline-block;}
+  .pub-actions{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;}
+  .cite-btn{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--teal); background:transparent;
+    border:1px solid rgba(74,156,166,0.35); padding:7px 13px; border-radius:20px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:7px; transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .cite-btn:hover{border-color:var(--amber); color:var(--amber); background:rgba(232,163,61,0.06);}
+  .cite-btn.copied{border-color:#4ADE80; color:#4ADE80; background:rgba(74,222,128,0.08);}
+  .cite-btn svg{flex-shrink:0;}
+
+  /* tech table */
+  .tech-table{display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .tech-col{border-left:1px solid var(--line);}
+  .tech-col:first-child{border-left:none;}
+  .tech-head{
+    font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--amber); padding:14px 16px;
+    background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .tech-item{padding:11px 16px; font-size:0.88rem; color:var(--ink-dim); border-bottom:1px solid rgba(232,163,61,0.08);}
+  .tech-item:last-child{border-bottom:none;}
+
+  /* team */
+  .team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .team-card{border:1px solid var(--line); background:var(--bg-panel); padding:22px; border-radius:var(--radius); text-align:left;}
+  .team-card .glyph{font-family:'IBM Plex Mono',monospace; font-size:1.4rem; color:var(--amber); margin-bottom:10px;}
+  .team-card h4{font-size:0.95rem; margin-bottom:4px;}
+  .team-card p{color:var(--ink-dimmer); font-size:0.82rem;}
+
+  /* contact */
+  .contact-panel{
+    border:1px solid var(--line-strong); background:var(--bg-panel); border-radius:var(--radius);
+    padding:48px; display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:center;
+  }
+  .contact-panel h2{font-size:1.8rem; max-width:16ch; margin-bottom:14px;}
+  .contact-panel p{color:var(--ink-dim); max-width:40ch;}
+  .contact-links{display:flex; flex-direction:column; gap:2px;}
+  .contact-links a{
+    display:flex; align-items:center; justify-content:space-between; text-decoration:none;
+    padding:15px 4px; border-bottom:1px solid var(--line); color:var(--ink);
+    font-size:0.94rem; transition:color .15s ease, padding-left .15s ease;
+  }
+  .contact-links a:last-child{border-bottom:none;}
+  .contact-links a:hover{color:var(--amber); padding-left:8px;}
+  .contact-links .arrow{color:var(--ink-dimmer); font-family:'IBM Plex Mono',monospace;}
+  .contact-links a:hover .arrow{color:var(--amber);}
+
+  footer{border-top:1px solid var(--line); padding:32px 0; }
+  .foot-row{display:flex; justify-content:space-between; align-items:center; color:var(--ink-dimmer); font-size:0.8rem; font-family:'IBM Plex Mono',monospace; flex-wrap:wrap; gap:10px;}
+  .foot-row a{color:var(--ink-dimmer); text-decoration:none;}
+  .foot-row a:hover{color:var(--amber);}
+
+  @media (max-width: 880px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .schematic{order:-1; max-width:280px;}
+    .about-grid{grid-template-columns:1fr;}
+    .card-grid, .card-grid.triple{grid-template-columns:1fr;}
+    .tech-table{grid-template-columns:1fr 1fr;}
+    .tech-col:nth-child(3){border-left:none; border-top:1px solid var(--line);}
+    .tech-col:nth-child(4){border-top:1px solid var(--line);}
+    .team-grid{grid-template-columns:1fr 1fr;}
+    .contact-panel{grid-template-columns:1fr; padding:32px;}
+    .pub{grid-template-columns:1fr; gap:8px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <a href="#top" class="brand">
+      <img src="data:image/png;base64,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" alt="SETA" width="38" height="38" style="display:block;">
+      <span class="brand-text">SETA<small>UFMT · VÁRZEA GRANDE</small></span>
+    </a>
+    <nav class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#pesquisa">Pesquisa</a>
+      <a href="#publicacoes">Publicações</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato" class="nav-cta">Contato</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4H14M2 8H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="links" id="mobileMenu" style="display:none; flex-direction:column; padding:8px 28px 18px; border-top:1px solid var(--line);">
+    <a href="#sobre">Sobre</a>
+    <a href="#pesquisa">Pesquisa</a>
+    <a href="#publicacoes">Publicações</a>
+    <a href="#equipe">Equipe</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Pesquisa &amp; Extensão · Faculdade de Engenharia · UFMT</div>
+        <h1>Sistemas embarcados que saem do laboratório e <span class="accent">ganham o mundo real.</span></h1>
+        <p class="hero-sub">O SETA reúne docentes, discentes e técnicos da UFMT em torno de robótica, IoT, automação e controle — transformando hardware, firmware e dados em soluções aplicadas.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/SETA-UFMT" target="_blank" rel="noopener">Ver projetos no GitHub</a>
+          <a class="btn btn-ghost" href="#publicacoes">Publicações recentes</a>
+        </div>
+        <div class="console" id="bootConsole">
+          <div class="line" id="cl1"></div>
+          <div class="line" id="cl2"></div>
+          <div class="line" id="cl3"></div>
+          <div class="line" id="cl4"><span class="cursor"></span></div>
+        </div>
+      </div>
+      <div class="schematic" id="armStage">
+        <svg viewBox="0 0 400 400" width="100%" height="100%">
+          <circle cx="150" cy="330" r="150" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 6"/>
+          <circle cx="150" cy="330" r="2" fill="var(--line-strong)"/>
+          <rect x="120" y="345" width="60" height="18" rx="3" fill="#102A38" stroke="var(--line-strong)" stroke-width="1"/>
+          <line id="seg1" x1="150" y1="345" x2="150" y2="235" stroke="#E8A33D" stroke-width="9" stroke-linecap="round"/>
+          <line id="seg2" x1="150" y1="235" x2="150" y2="150" stroke="#4A9CA6" stroke-width="7" stroke-linecap="round"/>
+          <circle id="jointBase" cx="150" cy="345" r="9" fill="#0E2530" stroke="#E8A33D" stroke-width="2"/>
+          <circle id="jointElbow" cx="150" cy="235" r="7" fill="#0E2530" stroke="#E8A33D" stroke-width="2"/>
+          <circle id="jointEnd" cx="150" cy="150" r="5.5" fill="#EDEAE3"/>
+          <text id="readTheta1" class="readout" x="160" y="300"></text>
+          <text id="readTheta2" class="readout" x="160" y="195"></text>
+        </svg>
+        <span class="hint">mova o cursor — braço com cinemática inversa</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">01 / SOBRE</span>
+        <h2>Uma ponte entre academia, indústria e sociedade</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>O <strong>SETA</strong> (Sistemas Embarcados, Tecnologia e Aplicações) é um projeto de pesquisa e extensão da Universidade Federal de Mato Grosso, campus Várzea Grande, dedicado ao desenvolvimento e à aplicação de tecnologias em robótica, internet das coisas, sistemas embarcados, automação e engenharia de software.</p>
+          <p>O grupo reúne alunos, técnicos e docentes em um ambiente colaborativo, com o objetivo de desenvolver soluções interdisciplinares e aplicadas — impulsionando avanços tecnológicos e contribuindo para a formação de profissionais qualificados nas áreas de Engenharia, Computação e Controle e Automação.</p>
+        </div>
+        <div class="lead-card">
+          <span class="mono">COORDENAÇÃO</span>
+          <h3>Prof. Dr. Jésus Bueno Franco</h3>
+          <span class="role">Líder do projeto SETA — UFMT</span>
+          <div class="mission">
+            <strong style="color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--amber-soft); display:block; margin-bottom:8px;">MISSÃO</strong>
+            Promover o desenvolvimento científico e tecnológico através da pesquisa aplicada, formação continuada e projetos de extensão que impactem positivamente a comunidade acadêmica e a sociedade.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PESQUISA -->
+  <section id="pesquisa">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">02 / PESQUISA</span>
+        <h2>Projetos de pesquisa</h2>
+      </div>
+      <p class="section-lead" style="margin-bottom:32px;">Clique em um projeto para ver objetivos, frentes de trabalho e tecnologias envolvidas.</p>
+
+      <div class="acc-list">
+
+        <details class="acc-item" open>
+          <summary>
+            <span class="acc-icon"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+              <rect x="12" y="32" width="16" height="5" rx="1.5" fill="#0E2530" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M20 30 L15 17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              <path d="M15 17 L27 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              <circle cx="20" cy="30" r="3.2" fill="#0E2530" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="15" cy="17" r="2.6" fill="#0E2530" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="27" cy="11" r="2.2" fill="#0E2530" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M27 11 L32.5 7.5M27 11 L31.5 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+            </svg></span>
+            <span>
+              <h3>BIMO — Braço Interativo Mecânico Otimizado</h3>
+              <span class="teaser">Manipulador robótico com controle remoto por Bluetooth e cinemática inversa</span>
+            </span>
+            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Manipulador robótico de bancada controlado remotamente por Bluetooth, capaz de manipular objetos de diferentes formas e pesos. O projeto une controle PID para suavizar o movimento dos servomotores, feedback sensorial para leitura da posição de cada junta, e cálculo de cinemática inversa — o operador define apenas o ponto que a garra deve alcançar, e o sistema resolve sozinho os ângulos necessários em cada articulação.</p>
+            <ul>
+              <li><strong>Comunicação Bluetooth</strong> — envio de comandos em tempo real entre o controle e o braço.</li>
+              <li><strong>Controle PID</strong> — suavização e precisão no movimento dos servomotores.</li>
+              <li><strong>Cinemática inversa</strong> — cálculo automático dos ângulos das juntas a partir da posição desejada.</li>
+              <li><strong>Garra com feedback</strong> — leitura de posição e força durante a manipulação de objetos.</li>
+            </ul>
+            <div class="chip-row">
+              <span class="chip">Feedback sensorial</span>
+              <span class="chip">Controle PID</span>
+              <span class="chip">Cinemática inversa</span>
+              <span class="chip">Bluetooth</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc-item">
+          <summary>
+            <span class="acc-icon"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+              <rect x="9" y="16" width="22" height="18" rx="1.5" fill="#0E2530" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M13 20.5h3M18 20.5h3M23 20.5h3M13 24.5h3M18 24.5h3M23 24.5h3M13 28.5h3M18 28.5h3M23 28.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.85"/>
+              <path d="M20 12V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="20" cy="6" r="1.8" fill="currentColor"/>
+              <path d="M15 11c1.6-1.6 3.2-2.4 5-2.4s3.4.8 5 2.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            </svg></span>
+            <span>
+              <h3>API — Automação Predial Integrada</h3>
+              <span class="teaser">Centralizador inteligente de iluminação, ventilação, energia e acesso</span>
+            </span>
+            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Centralizador de controle do prédio, reunindo em uma única plataforma a gestão de iluminação, ventilação, consumo energético e controle de acesso de entrada e saída. O sistema utiliza sensoriamento distribuído pelos ambientes e uma interface web para monitoramento e ajuste remoto, tornando a operação do edifício mais eficiente, segura e econômica.</p>
+            <ul>
+              <li><strong>Automação de ambientes</strong> — iluminação e ventilação ajustadas por ocupação e horário.</li>
+              <li><strong>Consumo energético</strong> — monitoramento em tempo real por setor do prédio.</li>
+              <li><strong>Controle de acesso</strong> — gestão de entrada e saída de pessoas.</li>
+              <li><strong>Painel web</strong> — interface de gestão remota para operadores.</li>
+            </ul>
+            <div class="chip-row">
+              <span class="chip">Domótica</span>
+              <span class="chip">Sensoriamento</span>
+              <span class="chip">Back-end / Front-end</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc-item">
+          <summary>
+            <span class="acc-icon"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="10" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M20 12v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="10" y="16" width="20" height="13" rx="3" fill="#0E2530" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="16" cy="22.5" r="2.4" fill="currentColor"/>
+              <circle cx="24" cy="22.5" r="2.4" fill="currentColor" opacity="0.45"/>
+              <circle cx="14" cy="31.5" r="3.2" fill="#0E2530" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="26" cy="31.5" r="3.2" fill="#0E2530" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 27c-2 1.4-2 4.6 0 6M32 27c2 1.4 2 4.6 0 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+            </svg></span>
+            <span>
+              <h3>AMobot — Robô Móvel Autônomo</h3>
+              <span class="teaser">Navegação autônoma com visão computacional e mapeamento</span>
+            </span>
+            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Robô móvel autônomo capaz de se deslocar por ambientes distintos, desviando de obstáculos por meio de visão computacional e sensores de proximidade. O projeto explora algoritmos de mapeamento do ambiente e técnicas de aprendizado de máquina para tornar a navegação cada vez mais precisa e adaptativa a diferentes cenários.</p>
+            <ul>
+              <li><strong>Navegação autônoma</strong> — deslocamento com desvio de obstáculos em tempo real.</li>
+              <li><strong>Mapeamento</strong> — construção do mapa do ambiente durante o deslocamento.</li>
+              <li><strong>Visão computacional</strong> — reconhecimento de rotas e obstáculos por câmera.</li>
+              <li><strong>Aprendizado de máquina</strong> — refinamento contínuo da tomada de decisão.</li>
+            </ul>
+            <div class="chip-row">
+              <span class="chip">Navegação</span>
+              <span class="chip">Visão computacional</span>
+              <span class="chip">Machine Learning</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc-item">
+          <summary>
+            <span class="acc-icon"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+              <rect x="17" y="18" width="6" height="6" rx="1.5" fill="#0E2530" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M17 21H10M23 21h7M20 18v-7M20 24v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="8" cy="21" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="32" cy="21" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
+              <circle cx="20" cy="9" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
+              <circle cx="20" cy="33" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            </svg></span>
+            <span>
+              <h3>AeroFlyControl</h3>
+              <span class="teaser">Controle de voo e telemetria para veículos aéreos não tripulados</span>
+            </span>
+            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Sistema de controle para veículos aéreos não tripulados (VANTs/drones), abrangendo desde a estabilização de voo até o planejamento de missões autônomas. O projeto integra controladores de voo, módulos de telemetria e GPS para acompanhamento em tempo real da posição e do estado da aeronave.</p>
+            <ul>
+              <li><strong>Controlador de voo</strong> — estabilização e resposta aos comandos de pilotagem.</li>
+              <li><strong>Telemetria</strong> — transmissão de dados de voo em tempo real.</li>
+              <li><strong>GPS</strong> — posicionamento e rastreamento da aeronave.</li>
+              <li><strong>Missões autônomas</strong> — planejamento e execução de rotas pré-definidas.</li>
+            </ul>
+            <div class="chip-row">
+              <span class="chip">Telemetria</span>
+              <span class="chip">GPS</span>
+              <span class="chip">Missões autônomas</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc-item">
+          <summary>
+            <span class="acc-icon"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+              <rect x="8" y="20" width="14" height="10" rx="1.5" fill="#0E2530" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M22 15v15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M22 19h9M22 23.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="12" cy="32" r="3" fill="#0E2530" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="32" r="1" fill="currentColor"/>
+              <circle cx="27" cy="32" r="3" fill="#0E2530" stroke="currentColor" stroke-width="1.8" opacity="0.6"/>
+              <circle cx="27" cy="32" r="1" fill="currentColor" opacity="0.6"/>
+              <path d="M31 25l3-3M31 25l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
+            </svg></span>
+            <span>
+              <h3>OmniFork</h3>
+              <span class="teaser">Empilhadeira com rodas omnidirecionais para estudo de sistemas embarcados</span>
+            </span>
+            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="acc-body">
+            <p>Modelagem e construção de uma empilhadeira com rodas omnidirecionais para o estudo de sistemas embarcados. O veículo é capaz de se locomover em diferentes ambientes e superar diferentes obstáculos por meio das rodas omnidirecionais e, na primeira fase do projeto, é controlado manualmente via rádio-controle.</p>
+            <ul>
+              <li><strong>Estrutura do chassi</strong> — modelagem da base e da torre considerando o peso total para garantir estabilidade e equilíbrio durante a elevação de cargas.</li>
+              <li><strong>Rodas omnidirecionais</strong> — movimentação em múltiplas direções apenas controlando a rotação e o sentido das rodas.</li>
+              <li><strong>Movimento coordenado das rodas</strong> — programação que garante a execução correta de cada padrão de deslocamento.</li>
+              <li><strong>Movimento da torre</strong> — controle do garfo responsável pela captura e liberação de objetos.</li>
+              <li><strong>Controle via rádio-frequência</strong> — comando remoto dos motores das rodas e do garfo.</li>
+              <li><strong>Restrição de comandos simultâneos</strong> — evita que o veículo perca funcionalidade ao receber comandos conflitantes.</li>
+              <li><strong>Limites de curso do garfo</strong> — restringe o movimento superior e inferior para preservar a integridade da estrutura.</li>
+              <li><strong>Economia de bateria</strong> — perfis de velocidade via rádio (50% no modo padrão, 100% no modo turbo).</li>
+              <li><strong>Projeto de PCB</strong> — placa de circuito impresso dedicada, para confiabilidade nas ligações e organização da montagem eletrônica.</li>
+            </ul>
+            <div class="chip-row">
+              <span class="chip">Rodas omnidirecionais</span>
+              <span class="chip">Controle via rádio</span>
+              <span class="chip">PCB</span>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICAÇÕES -->
+  <section id="publicacoes">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">03 / PUBLICAÇÕES</span>
+        <h2>Produção científica</h2>
+      </div>
+      <p class="section-lead" style="margin-bottom:32px;">Trabalhos apresentados e publicados em 2025 por membros do SETA em congressos e mostras acadêmicas. Use os botões abaixo de cada trabalho para copiar a referência pronta em ABNT ou APA.</p>
+
+      <div class="pub-list">
+        <div class="pub" data-title="Ensino de Sistemas Embarcados com Foco em Desenvolvimento de Competências Cognitivas e Práticas" data-event="ABENGE — 53° COBENGE 2025 e VIII Simpósio Internacional de Educação em Engenharia" data-institution="PUC-Campinas" data-year="2025" data-id-type="DOI" data-id-value="10.37702/2175-957x.cobenge.2025.6118" data-link="https://doi.org/10.37702/2175-957x.cobenge.2025.6118" data-authors="João Mateus Gabriel Roldão de Oliveira;Edvalte José da Silva Neto;Debora Mateus Camargo de Cerqueira;Jésus Franco Bueno;Mayck Vinicius Aguiar;Vinicius Matheus Oliveira Correa da Costa">
+          <span class="pub-idx">01</span>
+          <div>
+            <div class="pub-title">Ensino de Sistemas Embarcados com Foco em Desenvolvimento de Competências Cognitivas e Práticas</div>
+            <div class="pub-meta">
+              <span>ABENGE — 53° COBENGE 2025 e VIII Simpósio Internacional de Educação em Engenharia</span>
+              <span>PUC-Campinas</span>
+              <span>2025</span>
+              <span class="pub-id">DOI: <a href="https://doi.org/10.37702/2175-957x.cobenge.2025.6118" target="_blank" rel="noopener">10.37702/2175-957x.cobenge.2025.6118</a></span>
+            </div>
+            <div class="pub-authors"><span class="lbl">AUTORES</span>João Mateus Gabriel Roldão de Oliveira, Edvalte José da Silva Neto, Debora Mateus Camargo de Cerqueira, Jésus Franco Bueno, Mayck Vinicius Aguiar, Vinicius Matheus Oliveira Correa da Costa</div>
+            <div class="pub-actions">
+              <button class="cite-btn" data-style="abnt">Copiar citação ABNT</button>
+              <button class="cite-btn" data-style="apa">Copiar citação APA</button>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-title="Projeto e Construção do AeroFlyControl: Uma Abordagem Prática para o Ensino de Sistemas Embarcados e Aerodinâmica" data-event="XVI Mostra de Extensão da UFMT" data-institution="UFMT" data-year="2025" data-id-type="ISSN" data-id-value="2594-5106" data-link="https://www.even3.com.br/anais/forum-xvi-mostra-de-extensao-584826/1326650-projeto-e-construcao-do-aeroflycontrol--uma-abordagem-pratica-para-o-ensino-de-sistemas-embarcados-e-aerodinamic/" data-authors="Vinicius Matheus Oliveira Correa da Costa;Debora Mateus Camargo de Cerqueira;João Mateus G. N. Oliveira;Jésus Franco Bueno;Mayck Vinicius Aguiar;Edvalte José da Silva Neto;Gabriel Silva de Oliveira Bevilacqua">
+          <span class="pub-idx">02</span>
+          <div>
+            <div class="pub-title">Projeto e Construção do AeroFlyControl: Uma Abordagem Prática para o Ensino de Sistemas Embarcados e Aerodinâmica</div>
+            <div class="pub-meta">
+              <span>XVI Mostra de Extensão da UFMT</span>
+              <span>UFMT</span>
+              <span>2025</span>
+              <span class="pub-id">ISSN: <a href="https://www.even3.com.br/anais/forum-xvi-mostra-de-extensao-584826/1326650-projeto-e-construcao-do-aeroflycontrol--uma-abordagem-pratica-para-o-ensino-de-sistemas-embarcados-e-aerodinamic/" target="_blank" rel="noopener">2594-5106</a></span>
+            </div>
+            <div class="pub-authors"><span class="lbl">AUTORES</span>Vinicius Matheus Oliveira Correa da Costa, Debora Mateus Camargo de Cerqueira, João Mateus G. N. Oliveira, Jésus Franco Bueno, Mayck Vinicius Aguiar, Edvalte José da Silva Neto, Gabriel Silva de Oliveira Bevilacqua</div>
+            <div class="pub-actions">
+              <button class="cite-btn" data-style="abnt">Copiar citação ABNT</button>
+              <button class="cite-btn" data-style="apa">Copiar citação APA</button>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-title="DATAMVOO — Sistema Embarcado de Baixo Custo para o Controle e Aquisição de Dados Ambientais em Voo" data-event="SEMAC e SECOMP 2025" data-institution="UFMT" data-year="2025" data-id-type="ISBN" data-id-value="978-65-272-1703-9" data-link="https://www.even3.com.br/anais/semac-secomp-2025/1211870-datamvoo---sistema-embarcado-de-baixo-custo-para-o-controle-e-aquisicao-de-dados-ambientais-em-voo/" data-authors="Vinicius Matheus Oliveira Correa da Costa;João Mateus G. N. Oliveira;Edvalte José da Silva Neto;Debora Mateus Camargo de Cerqueira;Daniel de Oliveira Melo;Gabriel Silva de Oliveira Bevilacqua;Mayck Vinicius Aguiar;Jésus Franco Bueno">
+          <span class="pub-idx">03</span>
+          <div>
+            <div class="pub-title">DATAMVOO — Sistema Embarcado de Baixo Custo para o Controle e Aquisição de Dados Ambientais em Voo</div>
+            <div class="pub-meta">
+              <span>SEMAC e SECOMP 2025</span>
+              <span>UFMT</span>
+              <span>2025</span>
+              <span class="pub-id">ISBN: <a href="https://www.even3.com.br/anais/semac-secomp-2025/1211870-datamvoo---sistema-embarcado-de-baixo-custo-para-o-controle-e-aquisicao-de-dados-ambientais-em-voo/" target="_blank" rel="noopener">978-65-272-1703-9</a></span>
+            </div>
+            <div class="pub-authors"><span class="lbl">AUTORES</span>Vinicius Matheus Oliveira Correa da Costa, João Mateus G. N. Oliveira, Edvalte José da Silva Neto, Debora Mateus Camargo de Cerqueira, Daniel de Oliveira Melo, Gabriel Silva de Oliveira Bevilacqua, Mayck Vinicius Aguiar, Jésus Franco Bueno</div>
+            <div class="pub-actions">
+              <button class="cite-btn" data-style="abnt">Copiar citação ABNT</button>
+              <button class="cite-btn" data-style="apa">Copiar citação APA</button>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-title="Braço Robótico com Cinemática Inversa: Integração entre Robótica e Sistemas Embarcados" data-event="SEMAC e SECOMP 2025" data-institution="UFMT" data-year="2025" data-id-type="ISBN" data-id-value="978-65-272-1703-9" data-link="https://www.even3.com.br/anais/semac-secomp-2025/1216201-braco-robotico-com-cinematica-inversa--integracao-entre-robotica-e-sistemas-embarcados/" data-authors="Daniel Martins Zamariolli;Erick Gleisson Batista Sebba;Debora Mateus Camargo de Cerqueira;Fabio Chagas Barbosa Junior;João Oliveira;Kadu Guilherme Neto Macedo;Teo Silva;Jésus Franco Bueno">
+          <span class="pub-idx">04</span>
+          <div>
+            <div class="pub-title">Braço Robótico com Cinemática Inversa: Integração entre Robótica e Sistemas Embarcados</div>
+            <div class="pub-meta">
+              <span>SEMAC e SECOMP 2025</span>
+              <span>UFMT</span>
+              <span>2025</span>
+              <span class="pub-id">ISBN: <a href="https://www.even3.com.br/anais/semac-secomp-2025/1216201-braco-robotico-com-cinematica-inversa--integracao-entre-robotica-e-sistemas-embarcados/" target="_blank" rel="noopener">978-65-272-1703-9</a></span>
+            </div>
+            <div class="pub-authors"><span class="lbl">AUTORES</span>Daniel Martins Zamariolli, Erick Gleisson Batista Sebba, Debora Mateus Camargo de Cerqueira, Fabio Chagas Barbosa Junior, João Oliveira, Kadu Guilherme Neto Macedo, Teo Silva, Jésus Franco Bueno</div>
+            <div class="pub-actions">
+              <button class="cite-btn" data-style="abnt">Copiar citação ABNT</button>
+              <button class="cite-btn" data-style="apa">Copiar citação APA</button>
+            </div>
+          </div>
+        </div>
+        <div class="pub" data-title="Sistemas Embarcados na Prática: Robô Auto-Equilibrado como Ferramenta para o Ensino de Engenharia" data-event="SEMAC e SECOMP 2025" data-institution="UFMT" data-year="2025" data-id-type="ISBN" data-id-value="978-65-272-1703-9" data-link="https://www.even3.com.br/anais/semac-secomp-2025/1215632-sistemas-embarcados-na-pratica--robo-auto-equilibrado-como-ferramenta-para-o-ensino-de-engenharia/" data-authors="Allexandre Azambuja Gariglio Ferreira;Edvalte José da Silva Neto;Felipe Vieira Ayres de Oliveira;Gabriel Silva de Oliveira Bevilacqua;João Mateus Gabriel Roldão de Oliveira;Victor Hugo Pereira de Moraes">
+          <span class="pub-idx">05</span>
+          <div>
+            <div class="pub-title">Sistemas Embarcados na Prática: Robô Auto-Equilibrado como Ferramenta para o Ensino de Engenharia</div>
+            <div class="pub-meta">
+              <span>SEMAC e SECOMP 2025</span>
+              <span>UFMT</span>
+              <span>2025</span>
+              <span class="pub-id">ISBN: <a href="https://www.even3.com.br/anais/semac-secomp-2025/1215632-sistemas-embarcados-na-pratica--robo-auto-equilibrado-como-ferramenta-para-o-ensino-de-engenharia/" target="_blank" rel="noopener">978-65-272-1703-9</a></span>
+            </div>
+            <div class="pub-authors"><span class="lbl">AUTORES</span>Allexandre Azambuja Gariglio Ferreira, Edvalte José da Silva Neto, Felipe Vieira Ayres de Oliveira, Gabriel Silva de Oliveira Bevilacqua, João Mateus Gabriel Roldão de Oliveira, Victor Hugo Pereira de Moraes</div>
+            <div class="pub-actions">
+              <button class="cite-btn" data-style="abnt">Copiar citação ABNT</button>
+              <button class="cite-btn" data-style="apa">Copiar citação APA</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÁREAS DE ATUAÇÃO -->
+  <section id="areas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">04 / STACK</span>
+        <h2>Áreas de atuação</h2>
+      </div>
+      <div class="tech-table">
+        <div class="tech-col">
+          <div class="tech-head">HARDWARE</div>
+          <div class="tech-item">Arduino</div><div class="tech-item">ESP32</div><div class="tech-item">Raspberry Pi</div><div class="tech-item">STM32</div>
+        </div>
+        <div class="tech-col">
+          <div class="tech-head">SOFTWARE</div>
+          <div class="tech-item">C / C++</div><div class="tech-item">Python</div><div class="tech-item">ROS</div><div class="tech-item">Embedded Linux</div>
+        </div>
+        <div class="tech-col">
+          <div class="tech-head">IA &amp; ML</div>
+          <div class="tech-item">TensorFlow</div><div class="tech-item">OpenCV</div><div class="tech-item">Machine Learning</div><div class="tech-item">Deep Learning</div>
+        </div>
+        <div class="tech-col">
+          <div class="tech-head">COMUNICAÇÃO</div>
+          <div class="tech-item">Wi-Fi</div><div class="tech-item">Bluetooth</div><div class="tech-item">LoRa</div><div class="tech-item">Zigbee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPE -->
+  <section id="equipe">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">05 / EQUIPE</span>
+        <h2>Quem faz o SETA acontecer</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card"><div class="glyph">D</div><h4>Docentes</h4><p>Especializados nas áreas de pesquisa do grupo.</p></div>
+        <div class="team-card"><div class="glyph">G</div><h4>Discentes</h4><p>Graduação e pós-graduação em Engenharia e Computação.</p></div>
+        <div class="team-card"><div class="glyph">T</div><h4>Técnicos</h4><p>Suporte ao desenvolvimento de hardware e software.</p></div>
+        <div class="team-card"><div class="glyph">C</div><h4>Colaboradores</h4><p>Parceiros externos e da indústria.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="wrap">
+      <div class="contact-panel">
+        <div>
+          <span class="tag" style="padding-top:0;">06 / CONTATO</span>
+          <h2>Quer participar do SETA?</h2>
+          <p>Entre em contato pelo e-mail oficial, acompanhe as redes sociais ou contribua diretamente com os projetos no GitHub.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:seta.ufmt.faeng@gmail.com">E-mail <span class="arrow">seta.ufmt.faeng@gmail.com →</span></a>
+          <a href="https://github.com/SETA-UFMT" target="_blank" rel="noopener">GitHub <span class="arrow">@SETA-UFMT →</span></a>
+          <a href="https://linkedin.com/company/seta-ufmt" target="_blank" rel="noopener">LinkedIn <span class="arrow">SETA-UFMT →</span></a>
+          <a href="https://www.instagram.com/setaufmt" target="_blank" rel="noopener">Instagram <span class="arrow">@setaufmt →</span></a>
+          <a href="https://www.ufmt.br/curso/engcomp/pagina/projetos/12598#top_page" target="_blank" rel="noopener">Página oficial UFMT <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>SETA-UFMT © 2025 · Universidade Federal de Mato Grosso</span>
+    <span>Faculdade de Engenharia · Campus Várzea Grande</span>
+  </div>
+</footer>
+
+<script>
+  // mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.style.display = 'none'));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- boot console (typewriter, runs once) ----------
+  const bootLines = [
+    { el: 'cl1', text: '> INIT SETA_CORE ................. OK' },
+    { el: 'cl2', text: '> SENSOR_ARRAY :: CALIBRANDO ..... OK' },
+    { el: 'cl3', text: '> BIMO_ARM :: CINEMÁTICA INVERSA . ONLINE' },
+    { el: 'cl4', text: '> STATUS: SISTEMA PRONTO_' }
+  ];
+  function typeConsole(){
+    let i = 0;
+    function nextLine(){
+      if(i >= bootLines.length) return;
+      const {el, text} = bootLines[i];
+      const target = document.getElementById(el);
+      if(!target){ i++; nextLine(); return; }
+      if(reduceMotion){
+        target.textContent = text;
+        i++; nextLine();
+        return;
+      }
+      let c = 0;
+      const interval = setInterval(() => {
+        target.textContent = text.slice(0, c+1);
+        c++;
+        if(c >= text.length){
+          clearInterval(interval);
+          i++;
+          setTimeout(nextLine, 180);
+        }
+      }, 18);
+    }
+    nextLine();
+  }
+
+  // ---------- interactive 2-link inverse-kinematics arm ----------
+  function initArm(){
+    const stage = document.getElementById('armStage');
+    const svg = stage.querySelector('svg');
+    if(!svg) return;
+    const BASE = {x:150, y:345};
+    const L1 = 110, L2 = 85;
+    const seg1 = document.getElementById('seg1');
+    const seg2 = document.getElementById('seg2');
+    const jointElbow = document.getElementById('jointElbow');
+    const jointEnd = document.getElementById('jointEnd');
+    const readTheta1 = document.getElementById('readTheta1');
+    const readTheta2 = document.getElementById('readTheta2');
+
+    let targetX = 150, targetY = 150;
+    let curTx = targetX, curTy = targetY;
+    let lastMove = 0;
+    let idleAngle = 0;
+
+    function toLocal(clientX, clientY){
+      const rect = svg.getBoundingClientRect();
+      const x = (clientX - rect.left) / rect.width * 400;
+      const y = (clientY - rect.top) / rect.height * 400;
+      return {x, y};
+    }
+
+    function setTargetFromPointer(clientX, clientY){
+      const p = toLocal(clientX, clientY);
+      targetX = p.x; targetY = p.y;
+      lastMove = performance.now();
+    }
+
+    stage.addEventListener('pointermove', (e) => setTargetFromPointer(e.clientX, e.clientY));
+    stage.addEventListener('pointerdown', (e) => setTargetFromPointer(e.clientX, e.clientY));
+
+    function solveIK(tx, ty){
+      let dx = tx - BASE.x, dy = ty - BASE.y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      const maxReach = L1 + L2 - 2;
+      const minReach = Math.abs(L1 - L2) + 2;
+      dist = Math.max(minReach, Math.min(maxReach, dist));
+      const angleToTarget = Math.atan2(dy, dx);
+      const cosElbow = Math.max(-1, Math.min(1, (L1*L1 + dist*dist - L2*L2) / (2*L1*dist)));
+      const angleA = Math.acos(cosElbow);
+      const theta1 = angleToTarget - angleA;
+      const elbowX = BASE.x + L1*Math.cos(theta1);
+      const elbowY = BASE.y + L1*Math.sin(theta1);
+      const theta2 = Math.atan2(ty - elbowY, tx - elbowX);
+      const endX = elbowX + L2*Math.cos(theta2);
+      const endY = elbowY + L2*Math.sin(theta2);
+      return {elbowX, elbowY, endX, endY, theta1, theta2};
+    }
+
+    function frame(now){
+      const idle = (now - lastMove > 2500);
+      if(idle){
+        idleAngle += 0.006;
+        const r = 95 + Math.sin(idleAngle*1.7)*35;
+        targetX = BASE.x + Math.cos(idleAngle)*r;
+        targetY = 170 + Math.sin(idleAngle*1.3)*70;
+      }
+      curTx += (targetX - curTx) * 0.12;
+      curTy += (targetY - curTy) * 0.12;
+
+      const {elbowX, elbowY, endX, endY, theta1, theta2} = solveIK(curTx, curTy);
+
+      seg1.setAttribute('x2', elbowX); seg1.setAttribute('y2', elbowY);
+      seg2.setAttribute('x1', elbowX); seg2.setAttribute('y1', elbowY);
+      seg2.setAttribute('x2', endX); seg2.setAttribute('y2', endY);
+      jointElbow.setAttribute('cx', elbowX); jointElbow.setAttribute('cy', elbowY);
+      jointEnd.setAttribute('cx', endX); jointEnd.setAttribute('cy', endY);
+
+      const deg1 = (theta1 * 180/Math.PI).toFixed(0);
+      const deg2 = (theta2 * 180/Math.PI).toFixed(0);
+      readTheta1.setAttribute('x', BASE.x + 14);
+      readTheta1.setAttribute('y', (BASE.y + elbowY)/2);
+      readTheta1.textContent = 'θ1 ' + deg1 + '°';
+      readTheta2.setAttribute('x', elbowX + 14);
+      readTheta2.setAttribute('y', (elbowY + endY)/2);
+      readTheta2.textContent = 'θ2 ' + deg2 + '°';
+
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    typeConsole();
+    initArm();
+    initCitations();
+  });
+
+  // ---------- citation generator (ABNT NBR 6023 / APA 7ª ed.) ----------
+  function initCitations(){
+    const COPY_ICON = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8.5" height="8.5" rx="1.3" stroke="currentColor" stroke-width="1.3"/><path d="M10.2 5.5V3.8A1.3 1.3 0 0 0 8.9 2.5H3.8a1.3 1.3 0 0 0-1.3 1.3v5.1a1.3 1.3 0 0 0 1.3 1.3h1.7" stroke="currentColor" stroke-width="1.3"/></svg>';
+    const CHECK_ICON = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3.2L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    const CONNECTORS = ['de','da','do','das','dos'];
+    const SUFFIXES = ['neto','junior','júnior','filho','sobrinho','jr'];
+
+    // Splits a full name into { surname, given[], connector } following
+    // a best-effort ABNT/APA convention for Brazilian Portuguese names.
+    function parseAuthor(full){
+      const words = full.trim().split(/\s+/);
+      const lower = words.map(w => w.toLowerCase().replace(/\.$/, ''));
+      let idx = words.length - 1;
+      let surnameParts = [words[idx]];
+      idx--;
+      if (SUFFIXES.includes(lower[idx + 1]) && idx >= 0){
+        surnameParts.unshift(words[idx]);
+        idx--;
+      }
+      let connector = '';
+      if (idx >= 0 && CONNECTORS.includes(lower[idx])){
+        connector = words[idx];
+        idx--;
+      }
+      const given = words.slice(0, idx + 1);
+      return { surname: surnameParts.join(' '), given, connector };
+    }
+
+    function initials(givenWords){
+      return givenWords.map(w => {
+        const lw = w.toLowerCase().replace(/\.$/, '');
+        if (CONNECTORS.includes(lw)) return lw;
+        return w.charAt(0).toUpperCase() + '.';
+      }).join(' ');
+    }
+
+    function abntAuthor(p){
+      const tail = p.connector ? ' ' + p.connector : '';
+      return `${p.surname.toUpperCase()}, ${p.given.join(' ')}${tail}`;
+    }
+
+    function apaAuthor(p){
+      const surnameFull = p.connector ? `${p.connector} ${p.surname}` : p.surname;
+      return `${surnameFull}, ${initials(p.given)}`;
+    }
+
+    function todayPT(){
+      const meses = ['jan.','fev.','mar.','abr.','maio','jun.','jul.','ago.','set.','out.','nov.','dez.'];
+      const d = new Date();
+      return `${String(d.getDate()).padStart(2,'0')} ${meses[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function buildABNT(data){
+      const authors = data.authors.map(parseAuthor).map(abntAuthor).join('; ');
+      const idLine = data.idType ? ` ${data.idType}: ${data.idValue}.` : '';
+      return `${authors}. ${data.title}. In: ${data.event}. [S. l.]: ${data.institution}, ${data.year}.${idLine} Disponível em: ${data.link}. Acesso em: ${todayPT()}.`;
+    }
+
+    function buildAPA(data){
+      const parsed = data.authors.map(parseAuthor).map(apaAuthor);
+      let authors;
+      if (parsed.length === 1) authors = parsed[0];
+      else authors = parsed.slice(0, -1).join(', ') + ' & ' + parsed[parsed.length - 1];
+      return `${authors} (${data.year}). ${data.title}. In ${data.event}. ${data.institution}. ${data.link}`;
+    }
+
+    document.querySelectorAll('.pub').forEach(pub => {
+      const data = {
+        title: pub.dataset.title,
+        event: pub.dataset.event,
+        institution: pub.dataset.institution,
+        year: pub.dataset.year,
+        idType: pub.dataset.idType,
+        idValue: pub.dataset.idValue,
+        link: pub.dataset.link,
+        authors: (pub.dataset.authors || '').split(';').map(a => a.trim()).filter(Boolean)
+      };
+
+      pub.querySelectorAll('.cite-btn').forEach(btn => {
+        btn.innerHTML = COPY_ICON + '<span>' + btn.textContent.trim() + '</span>';
+        btn.addEventListener('click', async () => {
+          const style = btn.dataset.style;
+          const text = style === 'apa' ? buildAPA(data) : buildABNT(data);
+          try{
+            await navigator.clipboard.writeText(text);
+          }catch(e){
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+          }
+          const label = btn.querySelector('span');
+          const original = label.textContent;
+          btn.classList.add('copied');
+          btn.innerHTML = CHECK_ICON + '<span>Copiado!</span>';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = COPY_ICON + '<span>' + original + '</span>';
+          }, 1800);
+        });
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
