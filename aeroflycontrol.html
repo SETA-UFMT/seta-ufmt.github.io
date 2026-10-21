@@ -343,6 +343,10 @@
 <style>
   .status{display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:#4ADE80; border:1px solid rgba(74,222,128,0.35); padding:4px 10px; border-radius:20px; margin-bottom:14px;}
   .status::before{content:''; width:6px; height:6px; border-radius:50%; background:#4ADE80;}
+  .status.finalizado{color:#F87171; border-color:rgba(248,113,113,0.35);}
+  .status.finalizado::before{background:#F87171;}
+  .status.encerrando{color:#FBBF24; border-color:rgba(251,191,36,0.35);}
+  .status.encerrando::before{background:#FBBF24;}
   .prose p{color:var(--ink-dim); max-width:72ch; margin-bottom:18px;}
   .feat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:26px 0;}
   .feat{border:1px solid var(--line); background:var(--bg-panel); border-radius:var(--radius); padding:18px 20px; font-size:0.88rem; color:var(--ink-dim); position:relative;}
@@ -404,7 +408,7 @@
 <main id="app">
       <section class="page-hero"><div class="wrap">
         <div class="breadcrumb"><a href="index.html#pesquisa">Pesquisa</a><span>/</span><span>AeroFlyControl</span></div>
-        <span class="status">ATIVO</span>
+        <span class="status finalizado">FINALIZADO</span>
         <h1>AeroFlyControl</h1>
         <p class="lead">Controle de voo e telemetria para veículos aéreos não tripulados</p>
       </div></section>

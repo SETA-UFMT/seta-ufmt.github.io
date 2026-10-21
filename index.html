@@ -163,6 +163,8 @@
     color:var(--ink-dimmer); letter-spacing:0.04em; white-space:nowrap;
   }
   .acc-status .dot{width:6px; height:6px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 3px rgba(74,222,128,0.18); animation:pulse-led 2.2s ease-in-out infinite;}
+  .acc-status.encerrando .dot{background:#FBBF24; box-shadow:0 0 0 3px rgba(251,191,36,0.18);}
+  .acc-status.finalizado .dot{background:#F87171; box-shadow:0 0 0 3px rgba(248,113,113,0.18); animation:none;}
   .acc-chevron{color:var(--ink-dimmer); transition:transform .25s ease;}
   .acc-item[open] .acc-chevron{transform:rotate(180deg); color:var(--amber);}
   .acc-body{padding:0 26px 30px 98px; color:var(--ink-dim); font-size:0.92rem; max-width:76ch;}
@@ -457,7 +459,7 @@
               <h3>API — Automação Predial Integrada</h3>
               <span class="teaser">Centralizador inteligente de iluminação, ventilação, energia e acesso</span>
             </span>
-            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <span class="acc-status encerrando"><span class="dot"></span>ENCERRANDO</span>
             <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="acc-body">
@@ -531,7 +533,7 @@
               <h3>AeroFlyControl</h3>
               <span class="teaser">Controle de voo e telemetria para veículos aéreos não tripulados</span>
             </span>
-            <span class="acc-status"><span class="dot"></span>ATIVO</span>
+            <span class="acc-status finalizado"><span class="dot"></span>FINALIZADO</span>
             <svg class="acc-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </summary>
           <div class="acc-body">
