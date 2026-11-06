@@ -354,6 +354,49 @@
   .news-list .news-cover.has-img img{position:static; height:auto; display:block;}
   .news-quote{margin:20px 0; padding:14px 20px; border-left:3px solid var(--amber); background:var(--bg-panel); color:var(--ink); font-style:italic;}
   .news-tags{display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:22px; font-size:0.85rem;}
+  /* ---------- Card Stack Carousel ---------- */
+  .stack-wrap{margin-bottom:26px; max-width:100%;}
+  .stack{position:relative; aspect-ratio:800/952; width:40%; margin:18px 0 26px 20.4%; touch-action:pan-y; user-select:none; -webkit-user-select:none; cursor:grab; outline:none; margin-bottom:6px;}
+  .stack.dragging{cursor:grabbing;}
+  .stack:focus-visible{outline:2px solid var(--amber); outline-offset:6px;}
+  .stack-card{
+    position:absolute; inset:0; border-radius:10px; overflow:hidden; background:var(--bg-panel);
+    border:1px solid var(--line-strong); box-shadow:0 14px 30px -12px rgba(0,0,0,0.55);
+    transition:transform .45s cubic-bezier(.22,.8,.3,1), opacity .35s ease;
+    will-change:transform;
+  }
+  .stack.dragging .stack-card{transition:none;}
+  .stack-card img{width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; -webkit-user-drag:none;}
+  .stack-card[data-p="0"]{z-index:5; transform:translate(0,0) rotate(0) scale(1);}
+  .stack-card[data-p="1"]{z-index:4; transform:translate(48%,3%) rotate(5deg) scale(.94); filter:brightness(.85);}
+  .stack-card[data-p="prev"]{z-index:3; transform:translate(-48%,3%) rotate(-6deg) scale(.94); filter:brightness(.85);}
+  .stack-card[data-p="2"]{z-index:2; transform:translate(96%,6%) rotate(10deg) scale(.88); filter:brightness(.68);}
+  .stack-card[data-p="far"]{z-index:1; transform:translate(96%,6%) rotate(10deg) scale(.88); opacity:0; pointer-events:none;}
+  .stack-card:not([data-p="0"]){cursor:pointer;}
+  .stack[data-count="1"]{margin-left:30%;}
+  .stack[data-count="3"]{margin-left:10.8%;}
+  .stack-wrap.single .stack-ui,.stack-wrap.single .stack-hint{display:none;}
+  .stack-wrap.single .stack{cursor:default;}
+  .stack-ui{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:22px;}
+  .stack-btn{width:42px; height:42px; border-radius:50%; border:1px solid var(--line-strong); background:var(--deep); color:var(--ink); font-size:1rem; cursor:pointer; flex-shrink:0;}
+  .stack-btn:hover{border-color:var(--amber); color:var(--amber);}
+  .stack-btn:focus-visible,.stack-dots button:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+  .stack-mid{flex:1; text-align:center; min-width:0;}
+  .stack-count{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--ink-dimmer);}
+  .stack-dots{display:flex; justify-content:center; gap:8px; margin-top:8px;}
+  .stack-dots button{width:10px; height:10px; padding:0; border:0; border-radius:50%; background:var(--line-strong); cursor:pointer;}
+  .stack-dots button.on{background:var(--amber);}
+  .stack-hint{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--ink-dimmer); text-align:center; margin-top:10px;}
+  @media (prefers-reduced-motion: reduce){.stack-card{transition:none;}}
+  @media (max-width:600px){
+    .stack{width:52%; margin-left:16%;}
+    .stack[data-count="1"]{margin-left:24%;}
+    .stack[data-count="3"]{margin-left:8.4%;}
+    .stack-card[data-p="1"]{transform:translate(30%,3%) rotate(4deg) scale(.94);}
+    .stack-card[data-p="prev"]{transform:translate(-30%,3%) rotate(-5deg) scale(.94);}
+    .stack-card[data-p="2"]{transform:translate(60%,6%) rotate(8deg) scale(.88);}
+    .stack-card[data-p="far"]{transform:translate(60%,6%) rotate(8deg) scale(.88);}
+  }
 </style>
 </head>
 <body>
@@ -398,7 +441,28 @@
       </div>
       <div class="news-list">
         <article id="materia-1">
-          <div class="news-cover has-img"><img src="imagens noticias/1.jpg" alt="Allexandre Azambuja, vencedor do Prêmio Severino Meirelles de Iniciação Científica da UFMT" loading="lazy"><span class="news-badge">NOTÍCIA</span></div>
+          <div class="stack-wrap" role="region" aria-roledescription="carrossel" aria-label="Fotos da premiação">
+          <div class="stack" tabindex="0" aria-label="Pilha de fotos. Clique, arraste ou use as setas do teclado para passar">
+            <div class="stack-card" data-p="0" role="group" aria-roledescription="slide" aria-label="Foto 1 de 4"><img src="imagens noticias/1.jpg" alt="Allexandre Azambuja segurando o certificado e a placa do Prêmio Severino Meirelles" draggable="false"></div>
+            <div class="stack-card" data-p="1" role="group" aria-roledescription="slide" aria-label="Foto 2 de 4"><img src="imagens noticias/2.jpg" alt="Apresentação da Iniciação Científica e dos finalistas de Engenharia" draggable="false" loading="lazy"></div>
+            <div class="stack-card" data-p="2" role="group" aria-roledescription="slide" aria-label="Foto 3 de 4"><img src="imagens noticias/3.jpg" alt="Trabalho vencedor na área de Engenharias e recebimento do prêmio" draggable="false" loading="lazy"></div>
+            <div class="stack-card" data-p="prev" role="group" aria-roledescription="slide" aria-label="Foto 4 de 4"><img src="imagens noticias/4.jpg" alt="Amigos que apoiaram Allexandre e o orientador Dr. Jésus Bueno com o certificado" draggable="false" loading="lazy"></div>
+          </div>
+          <div class="stack-ui">
+            <button type="button" class="stack-btn stack-prev" aria-label="Foto anterior">&#10094;</button>
+            <div class="stack-mid">
+              <div class="stack-count" aria-live="polite">1 / 4</div>
+              <div class="stack-dots">
+              <button type="button" aria-label="Ir para a foto 1"></button>
+              <button type="button" aria-label="Ir para a foto 2"></button>
+              <button type="button" aria-label="Ir para a foto 3"></button>
+              <button type="button" aria-label="Ir para a foto 4"></button>
+              </div>
+            </div>
+            <button type="button" class="stack-btn stack-next" aria-label="Próxima foto">&#10095;</button>
+          </div>
+          <div class="stack-hint">clique em qualquer foto ou arraste para passar</div>
+        </div>
           <span class="news-date">21.10.2026</span>
           <h2>Graduando do SETA é premiado no 34º Seminário de Iniciação Científica e Tecnológica da UFMT</h2>
           <p>É com imensa satisfação que compartilhamos a conquista do graduando em Engenharia de Controle e Automação <a href="https://www.linkedin.com/in/allexandre-azambuja-058247337/" target="_blank" rel="noopener">Allexandre Azambuja</a>, orientado pelo Prof. Dr. <a href="https://www.linkedin.com/in/buenojf/" target="_blank" rel="noopener">Jésus Bueno</a>, que teve seu projeto de pesquisa premiado no 34º Seminário de Iniciação Científica e Tecnológica da UFMT.</p>
@@ -422,7 +486,21 @@
 </ul>
         </article>
         <article id="materia-2">
-          <div class="news-cover has-img"><img src="imagens noticias/2.jpg" alt="SETA na Mostra de Laboratórios da UFMT – Um Dia de Cientista" loading="lazy"><span class="news-badge">NOTÍCIA</span></div>
+          <div class="stack-wrap" role="region" aria-roledescription="carrossel" aria-label="Fotos da Mostra de Laboratórios">
+            <div class="stack" tabindex="0" aria-label="Pilha de fotos. Clique, arraste ou use as setas do teclado para passar">
+            <div class="stack-card" data-p="0" role="group" aria-roledescription="slide" aria-label="Foto 1 de 4"><img src="imagens noticias/5.jpg" alt="SETA na Mostra de Laboratórios da UFMT – Um Dia de Cientista" draggable="false"></div>
+            <div class="stack-card" data-p="1" role="group" aria-roledescription="slide" aria-label="Foto 2 de 4"><img src="imagens noticias/6.jpg" alt="Da eletrônica básica à robótica " draggable="false" loading="lazy"></div>
+            <div class="stack-card" data-p="2" role="group" aria-roledescription="slide" aria-label="Foto 3 de 4"><img src="imagens noticias/7.jpg" alt="Ciência na pratica" draggable="false" loading="lazy"></div>
+            <div class="stack-card" data-p="prev" role="group" aria-roledescription="slide" aria-label="Foto 4 de 4"><img src="imagens noticias/8.jpg" alt="Obrigado, Propesq" draggable="false" loading="lazy"></div>
+          </div>
+            </div>
+            <div class="stack-ui">
+              <button type="button" class="stack-btn stack-prev" aria-label="Foto anterior">&#10094;</button>
+              <div class="stack-mid"><div class="stack-count" aria-live="polite"></div><div class="stack-dots"></div></div>
+              <button type="button" class="stack-btn stack-next" aria-label="Próxima foto">&#10095;</button>
+            </div>
+            <div class="stack-hint">clique em qualquer foto ou arraste para passar</div>
+          </div>
           <span class="news-date">02.11.2026</span>
           <h2>SETA na Mostra de Laboratórios da UFMT: aproximando a comunidade da ciência e da tecnologia!</h2>
           <p>É com grande satisfação que compartilhamos nossa participação na Mostra de Laboratórios – Um Dia de Cientista na UFMT, iniciativa da PROPESQ/UFMT que integrou o 34º Seminário de Iniciação Científica e Tecnológica. O evento, realizado em parceria com a SEDUC-MT e com apoio da PROEG, reforçou o papel da universidade como ponte entre o conhecimento acadêmico e a sociedade.</p>
@@ -487,6 +565,52 @@
 <script>
   const menuBtn=document.getElementById('menuBtn'), mobileMenu=document.getElementById('mobileMenu');
   menuBtn.addEventListener('click',()=>{mobileMenu.style.display=mobileMenu.style.display==='flex'?'none':'flex';});
+  /* Card Stack Carousel (suporta vários carrosséis na página) */
+  document.querySelectorAll('.stack-wrap').forEach(function(wrap){
+    const stack=wrap.querySelector('.stack'); if(!stack) return;
+    const cards=[...stack.querySelectorAll('.stack-card')], n=cards.length,
+          dotsBox=wrap.querySelector('.stack-dots'),
+          count=wrap.querySelector('.stack-count');
+    stack.dataset.count=n;
+    if(n<2){wrap.classList.add('single'); return;}
+    if(dotsBox && !dotsBox.children.length){
+      cards.forEach((_,i)=>{const b=document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Ir para a foto '+(i+1)); dotsBox.appendChild(b);});
+    }
+    const dots=dotsBox?[...dotsBox.children]:[];
+    let cur=0, startX=0, dx=0, down=false, moved=false, target=null;
+    function render(){
+      cards.forEach((c,i)=>{
+        const p=(i-cur+n)%n;
+        c.dataset.p = p===0?'0' : p===1?'1' : p===2?'2' : (p===n-1?'prev':'far');
+        c.style.transform=''; c.setAttribute('aria-hidden', p===0?'false':'true');
+      });
+      dots.forEach((d,i)=>d.classList.toggle('on',i===cur));
+      if(count) count.textContent=(cur+1)+' / '+n;
+    }
+    function go(d){cur=(cur+d+n)%n; render();}
+    stack.addEventListener('pointerdown',e=>{down=true; moved=false; target=e.target.closest('.stack-card'); startX=e.clientX; dx=0; stack.setPointerCapture(e.pointerId); stack.classList.add('dragging');});
+    stack.addEventListener('pointermove',e=>{
+      if(!down) return; dx=e.clientX-startX; if(Math.abs(dx)>6) moved=true;
+      cards[cur].style.transform='translate('+dx+'px,0) rotate('+(dx/22)+'deg)';
+    });
+    stack.addEventListener('pointerup',()=>{
+      if(!down) return; down=false; stack.classList.remove('dragging');
+      if(!moved){const i=target?cards.indexOf(target):cur; const r=(i-cur+n)%n; go(r===0?1 : (r===n-1?-1:r));}
+      else if(dx<-60) go(1);
+      else if(dx>60) go(-1);
+      else cards[cur].style.transform='';
+    });
+    stack.addEventListener('pointercancel',()=>{down=false; stack.classList.remove('dragging'); cards[cur].style.transform='';});
+    stack.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'){e.preventDefault(); go(1);}
+      else if(e.key==='ArrowLeft'){e.preventDefault(); go(-1);}
+    });
+    const nx=wrap.querySelector('.stack-next'), pv=wrap.querySelector('.stack-prev');
+    if(nx) nx.addEventListener('click',()=>go(1));
+    if(pv) pv.addEventListener('click',()=>go(-1));
+    dots.forEach((d,i)=>d.addEventListener('click',()=>{cur=i; render();}));
+    render();
+  });
 </script>
 </body>
 </html>
