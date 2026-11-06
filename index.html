@@ -301,6 +301,47 @@
     .contact-panel{grid-template-columns:1fr; padding:32px;}
     .pub{grid-template-columns:1fr; gap:8px;}
   }
+
+  /* ---------- Notícias ---------- */
+  .news-view{position:relative;}
+  .news-slide{display:none; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:32px; align-items:center; text-decoration:none; color:inherit; border:1px solid var(--line); background:var(--bg-panel); padding:24px; border-radius:var(--radius); min-height:260px;}
+  .news-slide.on{display:grid;}
+  .news-cover{aspect-ratio:16/9; border-radius:var(--radius); border:1px solid var(--line-strong); background:linear-gradient(135deg,#053A96,#038FFD 70%,#88A5D6); position:relative;}
+  .news-badge{position:absolute; left:12px; bottom:12px; background:var(--amber); color:#0D2648; font-family:'IBM Plex Mono',monospace; font-size:0.7rem; font-weight:600; padding:3px 9px; border-radius:var(--radius);}
+  .news-slide h3{font-size:clamp(1.3rem,2.4vw,1.8rem); line-height:1.2; margin-bottom:12px;}
+  .news-slide p{color:var(--ink-dim); margin-bottom:14px;}
+  .news-date{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--ink-dimmer);}
+  .news-slide:hover h3{color:var(--amber);}
+  .news-arrow{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:1px solid var(--line-strong); background:rgba(13,38,72,0.9); color:var(--ink); font-size:1.1rem; cursor:pointer;}
+  .news-arrow:hover{border-color:var(--amber); color:var(--amber);}
+  .news-arrow.prev{left:-22px;} .news-arrow.next{right:-22px;}
+  .news-dots{display:flex; justify-content:center; gap:8px; margin:26px 0 22px;}
+  .news-dots button{width:11px; height:11px; padding:0; border:0; border-radius:50%; background:var(--line-strong); cursor:pointer;}
+  .news-dots button.on{background:var(--amber);}
+  .news-tabs{display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
+  .news-tabs button{min-width:140px; padding:10px 18px; border:1px solid var(--line-strong); border-radius:var(--radius); background:var(--deep); color:#fff; font:500 0.88rem 'Space Grotesk',sans-serif; cursor:pointer;}
+  .news-tabs button:hover,.news-tabs button.on{border-color:var(--amber); background:var(--deep-hover);}
+  .news-arrow:focus-visible,.news-slide:focus-visible,.news-dots button:focus-visible,.news-tabs button:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+  .news-more{margin-top:28px; text-align:center;}
+  .news-list article{padding:36px 0; border-top:1px solid var(--line); scroll-margin-top:90px; max-width:760px;}
+  .news-list article:first-child{border-top:none; padding-top:0;}
+  .news-list h2{font-size:1.6rem; line-height:1.25; margin:10px 0 12px;}
+  .news-list article:target h2{color:var(--amber);}
+  .news-list p{color:var(--ink-dim); margin-bottom:12px;}
+  .news-list .news-cover{margin-bottom:18px;}
+  @media (max-width:880px){
+    .news-slide.on{grid-template-columns:1fr;}
+    .news-arrow.prev{left:-8px;} .news-arrow.next{right:-8px;}
+  }
+
+  .news-cover img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#0D2648; border-radius:var(--radius);}
+    /* carrossel: capa em formato retrato, texto ao lado */
+  .news-slide{grid-template-columns:auto minmax(0,1fr);}
+  .news-slide .news-cover{height:300px; aspect-ratio:4/5; width:auto;}
+  @media (max-width:880px){
+    .news-slide.on{grid-template-columns:1fr;}
+    .news-slide .news-cover{height:auto; width:100%; max-width:240px; margin:0 auto;}
+  }
 </style>
 </head>
 <body>
@@ -315,6 +356,7 @@
       <a href="#pesquisa">Pesquisa</a>
       <a href="#publicacoes">Publicações</a>
       <a href="#equipe">Equipe</a>
+      <a href="noticias.html">Notícias</a>
       <a href="membros.html">Membros</a>
       <a href="oficinas.html">Oficinas</a>
       <a href="#contato" class="nav-cta">Contato</a>
@@ -328,7 +370,8 @@
     <a href="#pesquisa">Pesquisa</a>
     <a href="#publicacoes">Publicações</a>
     <a href="#equipe">Equipe</a>
-    <a href="membros.html">Membros</a>
+    <a href="noticias.html">Notícias</a>
+      <a href="membros.html">Membros</a>
     <a href="oficinas.html">Oficinas</a>
     <a href="#contato">Contato</a>
   </nav>
@@ -369,6 +412,42 @@
         </svg>
         <span class="hint">mova o cursor — braço com cinemática inversa</span>
       </div>
+    </div>
+  </section>
+
+  <!-- NOTÍCIAS -->
+  <section id="noticias">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="tag">NOTÍCIAS</span>
+        <h2>Novidades do SETA</h2>
+      </div>
+      <div class="news-view" role="region" aria-label="Galeria de notícias">
+        <a class="news-slide on" href="noticias.html#materia-1">
+          <div class="news-cover"><img src="imagens%20noticias/1.jpg" alt="Allexandre Azambuja, vencedor do Prêmio Severino Meirelles" loading="lazy"><span class="news-badge">NOTÍCIA</span></div>
+          <div><h3>Graduando do SETA é premiado no 34º Seminário de Iniciação Científica e Tecnológica da UFMT</h3><p>Allexandre Azambuja, orientado pelo Prof. Dr. Jésus Bueno, recebeu o Prêmio Severino Meirelles na área de Engenharias com o projeto AMoBot.</p><span class="news-date">21.10.2026</span></div>        </a>
+        
+          <a class="news-slide" href="noticias.html#materia-2">
+          <div class="news-cover"><img src="imagens%20noticias/2.jpg" alt="SETA na Mostra de Laboratórios da UFMT" loading="lazy"><span class="news-badge">NOTÍCIA</span></div>
+          <div><h3>SETA na Mostra de Laboratórios da UFMT: aproximando a comunidade da ciência e da tecnologia!</h3><p>O SETA participou da Mostra de Laboratórios – Um Dia de Cientista, da PROPESQ/UFMT, apresentando seus projetos de pesquisa, desenvolvimento e extensão ao público.</p><span class="news-date">02.11.2026</span></div>
+        </a>
+        <a class="news-slide" href="noticias.html#materia-3">
+          <div class="news-cover"><span class="news-badge">NOTÍCIA</span></div>
+          <div><h3>Título da matéria 3</h3><p>Resumo curto da terceira notícia do SETA.</p><span class="news-date">03.11.2026</span></div>
+        </a>
+        <a class="news-slide" href="noticias.html#materia-4">
+          <div class="news-cover"><span class="news-badge">NOTÍCIA</span></div>
+          <div><h3>Título da matéria 4</h3><p>Resumo curto da quarta notícia do SETA.</p><span class="news-date">04.11.2026</span></div>
+        </a>
+        <a class="news-slide" href="noticias.html#materia-5">
+          <div class="news-cover"><span class="news-badge">NOTÍCIA</span></div>
+          <div><h3>Título da matéria 5</h3><p>Resumo curto da quinta notícia do SETA.</p><span class="news-date">05.11.2026</span></div>
+        </a>
+        <button type="button" class="news-arrow prev" aria-label="Notícia anterior">&#10094;</button>
+        <button type="button" class="news-arrow next" aria-label="Próxima notícia">&#10095;</button>
+      </div>
+      <div class="news-dots"></div>
+      <div class="news-more"><a class="btn btn-ghost" href="noticias.html">Ver todas as notícias →</a></div>
     </div>
   </section>
 
@@ -1016,6 +1095,27 @@
       });
     });
   }
+</script>
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.news-slide')],
+        dots=document.querySelector('.news-dots'),
+        tabs=[...document.querySelectorAll('.news-tabs button')],
+        reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i=0,timer;
+  slides.forEach((_,n)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ir para a notícia '+(n+1));b.onclick=()=>go(n);dots.appendChild(b);});
+  tabs.forEach((b,n)=>b.onclick=()=>go(n));
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+    dots.querySelectorAll('button').forEach((d,k)=>d.classList.toggle('on',k===i));
+    tabs.forEach((b,k)=>b.classList.toggle('on',k===i));
+    clearInterval(timer); if(!reduce) timer=setInterval(()=>go(i+1),7000);
+  }
+  document.querySelector('.news-arrow.prev').onclick=()=>go(i-1);
+  document.querySelector('.news-arrow.next').onclick=()=>go(i+1);
+  go(0);
+})();
 </script>
 
 </body>
