@@ -299,6 +299,16 @@
     .contact-panel{grid-template-columns:1fr; padding:32px;}
     .pub{grid-template-columns:1fr; gap:8px;}
   }
+  .ph-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:22px; align-items:stretch;}
+  .ph{margin:0; display:flex; flex-direction:column; background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);}
+  .ph-btn{padding:0; border:0; background:#0A1E3B; cursor:zoom-in; flex:1; min-height:360px; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .ph-btn img{width:100%; height:100%; object-fit:contain; display:block; max-height:560px;}
+  .ph figcaption{padding:10px 14px; font-size:0.82rem; color:var(--ink-dim); border-top:1px solid var(--line);}
+  .ph figcaption .mono{color:var(--amber); margin-right:8px; font-size:0.72rem;}
+  .lb{position:fixed; inset:0; z-index:100; background:rgba(5,14,30,0.92); display:none; align-items:center; justify-content:center; padding:24px; cursor:zoom-out;}
+  .lb.on{display:flex;}
+  .lb img{max-width:100%; max-height:100%; object-fit:contain; border:1px solid var(--line-strong);}
+  @media (max-width:880px){ .ph-grid{grid-template-columns:1fr;} .ph-btn{min-height:0;} }
 </style>
 
 <style>
@@ -465,7 +475,12 @@
         <a class="btn btn-primary" href="https://github.com/SETA-UFMT" target="_blank" rel="noopener">Código no GitHub <span>↗</span></a>
         
       </div>
-      <div class="empty" style="margin-top:22px">As fotos deste projeto serão adicionadas em breve.</div>
+      <div class="ph-grid">
+        <figure class="ph"><button type="button" class="ph-btn" aria-label="Ampliar: Modelo 3D do AMobot (CAD)"><img src="imagens amobot/1.PNG" alt="Modelo 3D do AMobot (CAD)" loading="lazy"></button>
+          <figcaption><span class="mono">01</span> Passo 1 · Modelagem</figcaption></figure>
+        <figure class="ph"><button type="button" class="ph-btn" aria-label="Ampliar: Protótipo físico do AMobot impresso em 3D"><img src="imagens amobot/2.png" alt="Protótipo físico do AMobot impresso em 3D" loading="lazy"></button>
+          <figcaption><span class="mono">02</span> Passo 2 · Protótipo</figcaption></figure>
+      </div>
     </div></section>
       <section><div class="wrap">
         <p class="mono" style="color:var(--amber-soft);font-size:0.74rem;margin-bottom:14px">// OUTROS PROJETOS</p>
@@ -480,6 +495,17 @@
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-label="Foto ampliada"><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), im=lb.querySelector('img');
+  document.querySelectorAll('.ph-btn').forEach(function(b){
+    b.addEventListener('click',function(){var s=b.querySelector('img'); im.src=s.src; im.alt=s.alt; lb.classList.add('on');});
+  });
+  lb.addEventListener('click',function(){lb.classList.remove('on');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on');});
+})();
+</script>
 <script>
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
