@@ -196,6 +196,16 @@
   }
   .lead-card .mono{font-size:0.72rem; color:var(--amber-soft); display:block; margin-bottom:10px;}
   .lead-card h3{font-size:1.1rem; margin-bottom:4px;}
+  .lead-card .lead-name{display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-bottom:8px;}
+  .lead-card .lead-name h3{margin-bottom:0;}
+  .lead-links{display:inline-flex; gap:6px;}
+  .lead-links a{
+    font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--amber); text-decoration:none;
+    border:1px solid rgba(3,143,253,0.45); padding:3px 9px; border-radius:20px;
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .lead-links a:hover{color:var(--ink); border-color:var(--amber); background:rgba(3,143,253,0.12);}
+  .lead-links a:focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
   .lead-card span.role{color:var(--ink-dimmer); font-size:0.85rem;}
   .lead-card .mission{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); color:var(--ink-dim); font-size:0.9rem;}
 
@@ -465,8 +475,21 @@
         </div>
         <div class="lead-card">
           <span class="mono">COORDENAÇÃO</span>
-          <h3>Prof. Dr. Jésus Bueno Franco</h3>
-          <span class="role">Líder do projeto SETA — UFMT</span>
+          <div class="lead-name">
+            <h3>Profª. Dr. Etiane Oliveira Pereira de Carvalho</h3>
+            <span class="lead-links">
+              <a href="http://lattes.cnpq.br/8653658016323013" target="_blank" rel="noopener" aria-label="Currículo Lattes de Profª. Dr. Etiane Oliveira Pereira de Carvalho">Lattes</a>
+              <a href="https://orcid.org/0000-0001-7190-4128" target="_blank" rel="noopener" aria-label="ORCID de Profª. Dr. Etiane Oliveira Pereira de Carvalho">ORCID</a>
+            </span>
+          </div>
+          <div class="lead-name">
+            <h3>Profº. Dr. Jésus Bueno Franco</h3>
+            <span class="lead-links">
+              <a href="http://lattes.cnpq.br/6417916007218042" target="_blank" rel="noopener" aria-label="Currículo Lattes de Profº. Dr. Jésus Bueno Franco">Lattes</a>
+              <a href="https://orcid.org/0000-0003-3241-1552" target="_blank" rel="noopener" aria-label="ORCID de Profº. Dr. Jésus Bueno Franco">ORCID</a>
+            </span>
+          </div>
+          <span class="role">Líderes do Grupo SETA — UFMT</span>
           <div class="mission">
             <strong style="color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--amber-soft); display:block; margin-bottom:8px;">MISSÃO</strong>
             Promover o desenvolvimento científico e tecnológico através da pesquisa aplicada, formação continuada e projetos de extensão que impactem positivamente a comunidade acadêmica e a sociedade.
